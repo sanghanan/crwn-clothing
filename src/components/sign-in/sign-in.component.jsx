@@ -17,11 +17,12 @@ class SignIn extends Component {
         }
     }
     
-    handleSubmit= async event=>{
+    handleSubmit = async event=>{
         event.preventDefault();
         const {email,password}=this.state;
         try{
             await auth.signInWithEmailAndPassword(email,password);
+            this.setState({email:'',password:''})
             console.log("User signed in successfully!")
         }catch(err){
             console.log("Problem while signing in: ",err);
@@ -42,7 +43,7 @@ class SignIn extends Component {
                 <FormInput name="password" label="Password" type="password" value={this.state.password} required handleChange={this.handleChange}/>
                 
                 <div className='buttons'>
-                <CustomButton type="button">Sign In</CustomButton>
+                <CustomButton type="submit">Sign In</CustomButton>
                 <CustomButton onClick={signInWithGoogle} isGoogleSignIn>Sign In With Google</CustomButton>
                 </div>
                 
