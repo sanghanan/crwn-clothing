@@ -39,7 +39,7 @@ class ShopPage extends Component {
     return (
       <div>
         <div className="shop-page">
-          <Route
+          {/* <Route
             exact
             path={`${match.path}`}
             render={(props) => (
@@ -51,7 +51,7 @@ class ShopPage extends Component {
             render={(props) => (
               <CollectionPageWithSpinner isLoading={loading} {...props} />
             )}
-          />
+          /> */}
         </div>
       </div>
     );

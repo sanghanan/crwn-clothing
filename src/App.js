@@ -1,17 +1,14 @@
 /* eslint-disable require-jsdoc */
 import React, { Component } from "react";
 import "./App.css";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Routes, Route, RouterProvider } from "react-router-dom";
 import { connect } from "react-redux";
-import Homepage from "./pages/homepage/homepage.component";
-import ShopPage from "./pages/shop/shop.component";
-import Header from "./components/header/header.component";
-import RegisterAndLogin from "./pages/register-login/register-login.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.util";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 import CheckoutPage from "./pages/checkout/checkout.component";
+import { router } from "./router";
 
 class App extends Component {
   componentDidMount() {
@@ -35,28 +32,7 @@ class App extends Component {
   }
 
   render() {
-    return (
-      // eslint-disable-next-line react/jsx-filename-extension
-      <div>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Homepage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route
-            exact
-            path="/signin"
-            render={() =>
-              this.props.currentUser ? (
-                <Redirect to="/" />
-              ) : (
-                <RegisterAndLogin />
-              )
-            }
-          />
-          <Route exact path="/checkout" component={CheckoutPage} />
-        </Switch>
-      </div>
-    );
+    return <RouterProvider router={router} />;
   }
 }
 
